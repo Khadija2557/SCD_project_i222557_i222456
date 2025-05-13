@@ -7,6 +7,6 @@ spec:
     app: backend
   ports:
     - protocol: TCP
-      port: 8000        # What you want to port-forward to
-      targetPort: 8000  # Matches what the container is listening on
+      port: 8000        # Service port
+      targetPort: 8000  # Must match containerPort
   type: ClusterIP

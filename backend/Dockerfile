@@ -1,23 +1,17 @@
-# Use an official Node.js runtime as a parent image
-FROM node:14
+# Use Node.js 18 (LTS) instead of 14
+FROM node:18-alpine 
 
-# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install any needed packages specified in package.json
-RUN npm install
+# Install dependencies (use --omit=dev for production)
+RUN npm install --omit=dev
 
-# Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Ensure this matches your backend's actual port (e.g., 5000 or 8000)
+EXPOSE 8000  
 
-# Set environment variables (if needed)
-# ENV NODE_ENV production
-
-# Start the application
+# Start the app (replace "index.js" if your entry file is different)
 CMD ["node", "index.js"]

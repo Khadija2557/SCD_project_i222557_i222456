@@ -18,14 +18,15 @@ spec:
         - name: backend
           image: khadija2557/my-fusion-ecommerce-backend:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 8000 # Should match your app's listening port
           env:
             - name: NODE_ENV
               value: "production"
-          volumeMounts:
-            - name: backend-code
-              mountPath: /app
-      volumes:
-        - name: backend-code
-          hostPath:
-            path: /home/user/project/backend
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          # Removed volumeMounts as they're likely causing issues
