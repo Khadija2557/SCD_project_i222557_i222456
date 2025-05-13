@@ -7,6 +7,7 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 3001
-      targetPort: 3001
-  type: NodePort  # Expose frontend for external access
+      port: 80           # External service port (standard web port)
+      targetPort: 3001   # Must match containerPort
+      nodePort: 30001    # Explicit NodePort (30000-32767 range)
+  type: NodePort

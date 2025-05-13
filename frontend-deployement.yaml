@@ -16,16 +16,12 @@ spec:
     spec:
       containers:
         - name: frontend
-          image:  khadija2557/my-fusion-ecommerce-frontend:latest  # Build and push this to a container registry
+          image: khadija2557/my-fusion-ecommerce-frontend:latest
           ports:
-            - containerPort: 3001
+            - containerPort: 3001  # Keep this if your React app runs on 3001
           env:
             - name: REACT_APP_BACKEND_URL
-              value: "http://backend-service:3000"  # This service will route to the backend service
-          volumeMounts:
-            - name: frontend-code
-              mountPath: /app
-      volumes:
-        - name: frontend-code
-          hostPath:
-            path: /home/user/project/frontend
+              # Change to 5000 (standard backend port) or your actual backend port
+              value: "http://backend-service:5000"  
+          # REMOVE the volumeMounts and volumes sections completely
+          # They're causing issues and aren't needed for a containerized app
